@@ -1,11 +1,12 @@
 import { Button } from 'react-bootstrap';
 import './App.css';
-import Registration from './pages/reister-login/Registration';
 import {
   BrowserRouter,
   Routes,
   Route,
 } from "react-router-dom";
+import RegistrationPage from './pages/register-login/Registration';
+import LoginPage from './pages/register-login/Login';
 
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Registration />}></Route>
+          <Route path='/register' element={<RegistrationPage />}></Route>
+          <Route path='/' element={<LoginPage />}></Route>
           <Route path='*' element={<h1>404 not found</h1>}></Route>
         </Routes>
       </BrowserRouter>
