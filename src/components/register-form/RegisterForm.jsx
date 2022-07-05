@@ -19,8 +19,8 @@ const RegisterForm = () => {
     e.preventDefault();
     const { confirmPassword, password } = form;
     password === confirmPassword ? setError(false) : setError(true);
-    console.log(error);
-    console.log(form);
+
+    // dispatch the action to the reducer here
   };
 
   return (
