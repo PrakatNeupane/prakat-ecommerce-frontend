@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Alert, Button, Container, Form } from "react-bootstrap";
 import "./registerForm.css";
+import { useDispatch } from "react-redux";
+import { postUserAction } from "../../pages/register-login/signInUpAction";
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
   const [form, setForm] = useState({});
   const [error, setError] = useState(false);
 
@@ -18,9 +21,12 @@ const RegisterForm = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     const { confirmPassword, password } = form;
-    password === confirmPassword ? setError(false) : setError(true);
-
+    if (password !== confirmPassword) {
+      return setError(true);
+    }
+    setError(false);
     // dispatch the action to the reducer here
+    dispatch(postUserAction());
   };
 
   return (
