@@ -4,9 +4,17 @@ import "./registerForm.css";
 import { useDispatch } from "react-redux";
 import { postUserAction } from "../../pages/register-login/signInUpAction";
 
+const initialState = {
+  fName: "Prakat",
+  lName: "Neupane",
+  email: "prakat@gmail.com",
+  password: 123,
+  confirmPassword: 123,
+};
+
 const RegisterForm = () => {
   const dispatch = useDispatch();
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState(initialState);
   const [error, setError] = useState(false);
 
   const handleOnChange = (e) => {
@@ -26,7 +34,7 @@ const RegisterForm = () => {
     }
     setError(false);
     // dispatch the action to the reducer here
-    dispatch(postUserAction());
+    dispatch(postUserAction(form));
   };
 
   return (
@@ -39,6 +47,7 @@ const RegisterForm = () => {
             <Form.Label>First Name</Form.Label>
             <Form.Control
               name="fName"
+              value={form.fName}
               onChange={handleOnChange}
               type="text"
               placeholder="Sam"
@@ -49,6 +58,7 @@ const RegisterForm = () => {
             <Form.Label>Last Name</Form.Label>
             <Form.Control
               name="lName"
+              value={form.lName}
               onChange={handleOnChange}
               type="text"
               placeholder="Smith"
@@ -90,6 +100,7 @@ const RegisterForm = () => {
             <Form.Label>Email address</Form.Label>
             <Form.Control
               name="email"
+              value={form.email}
               onChange={handleOnChange}
               type="email"
               placeholder="Enter email"
@@ -101,6 +112,7 @@ const RegisterForm = () => {
             <Form.Label>Password</Form.Label>
             <Form.Control
               name="password"
+              value={form.password}
               onChange={handleOnChange}
               type="password"
               placeholder="Password"
@@ -112,6 +124,7 @@ const RegisterForm = () => {
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control
               name="confirmPassword"
+              value={form.confirmPassword}
               onChange={handleOnChange}
               type="password"
               placeholder="Password"

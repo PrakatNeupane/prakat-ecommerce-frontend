@@ -1,9 +1,9 @@
-import { isPending, isLoading } from './signInUpSlice'
+import { postUser } from '../../helpers/axiosHelpers'
+import { isPending, responseResolved } from './signInUpSlice'
+import { toast } from "react-toastify";
 
 export const postUserAction = user => async dispatch => {
     dispatch(isPending())
-
+    console.log(user)
     // call axiohelper to call api
-
-
 }

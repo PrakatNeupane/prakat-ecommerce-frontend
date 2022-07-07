@@ -24,6 +24,6 @@ const signInUpSlice = createSlice({
 
 const { reducer, actions } = signInUpSlice // reducer is the state and actions are the action creators / functions
 
-export const { isPending, isLoading } = actions
+export const { isPending, responseResolved } = actions
 
 export default reducer
