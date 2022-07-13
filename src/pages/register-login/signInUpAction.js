@@ -6,4 +6,7 @@ export const postUserAction = user => async dispatch => {
     dispatch(isPending())
     console.log(user)
     // call axiohelper to call api
+
+    const data = await postUser(user)
+    dispatch(responseResolved(data))
 }

@@ -9,6 +9,7 @@ const initialState = {
   lName: "Neupane",
   email: "prakat@gmail.com",
   password: 123,
+  phone: "9841444488",
   confirmPassword: 123,
 };
 
@@ -28,13 +29,15 @@ const RegisterForm = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    const { confirmPassword, password } = form;
-    if (password !== confirmPassword) {
+    if (form.password !== form.confirmPassword) {
       return setError(true);
     }
     setError(false);
+    console.log(form);
+
+    const { confirmPassword, ...rest } = form;
     // dispatch the action to the reducer here
-    dispatch(postUserAction(form));
+    dispatch(postUserAction(rest));
   };
 
   return (
