@@ -1,22 +1,25 @@
 import React, { useState } from "react";
 import { Alert, Button, Container, Form } from "react-bootstrap";
 import "./registerForm.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postUserAction } from "../../pages/register-login/signInUpAction";
 
 const initialState = {
   fName: "Prakat",
   lName: "Neupane",
   email: "prakat@gmail.com",
-  password: 123,
+  password: "123",
   phone: "9841444488",
-  confirmPassword: 123,
+  confirmPassword: "123",
 };
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
   const [form, setForm] = useState(initialState);
   const [error, setError] = useState(false);
+
+  // pull data from the redux store
+  const { isLoading, response } = useSelector((state) => state.signInUp);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -93,6 +96,7 @@ const RegisterForm = () => {
             <Form.Label>Phone </Form.Label>
             <Form.Control
               name="phone"
+              value={form.phone}
               onChange={handleOnChange}
               type="text"
               placeholder="0232424521"
@@ -137,6 +141,16 @@ const RegisterForm = () => {
             <Alert variant="danger" show={error}>
               Passwords do not match
             </Alert>
+          </Form.Group>
+
+          <Form.Group>
+            {response.message && (
+              <Alert
+                variant={response.status === "success" ? "success" : "danger"}
+              >
+                {response.message}
+              </Alert>
+            )}
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formGroupPassword">

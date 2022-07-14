@@ -8,5 +8,6 @@ export const postUserAction = user => async dispatch => {
     // call axiohelper to call api
 
     const data = await postUser(user)
+    console.log(data)
     dispatch(responseResolved(data))
 }
