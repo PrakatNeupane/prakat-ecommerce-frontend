@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Alert, Button, Container, Form } from "react-bootstrap";
+import { Alert, Button, Container, Form, Spinner } from "react-bootstrap";
 import "./registerForm.css";
 import { useDispatch, useSelector } from "react-redux";
 import { postUserAction } from "../../pages/register-login/signInUpAction";
@@ -154,7 +154,13 @@ const RegisterForm = () => {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formGroupPassword">
-            <Button type="submit">Sign Up</Button>
+            <Button type="submit">
+              {isLoading ? (
+                <Spinner variant="primary" animation="border" size="sm" />
+              ) : (
+                "Sign Up"
+              )}
+            </Button>
           </Form.Group>
         </Form>
       </div>
