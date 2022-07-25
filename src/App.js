@@ -7,6 +7,10 @@ import {
 } from "react-router-dom";
 import RegistrationPage from './pages/register-login/Registration';
 import LoginPage from './pages/register-login/Login';
+import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
 
 
 function App() {
@@ -19,6 +23,7 @@ function App() {
           <Route path='*' element={<h1>404 not found</h1>}></Route>
         </Routes>
       </BrowserRouter>
+      <ToastContainer />
     </div >
   );
 }

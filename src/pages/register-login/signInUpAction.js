@@ -4,11 +4,12 @@ import { toast } from "react-toastify";
 
 export const postUserAction = user => async dispatch => {
     dispatch(isPending())
-    console.log(dispatch(isPending()))
     console.log(user)
     // call axiohelper to call api
 
     const data = await postUser(user)
     console.log(data)
+
+    toast[data.status](data.message)
     dispatch(responseResolved(data))
-}
+} 
