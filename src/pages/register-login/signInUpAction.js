@@ -7,8 +7,12 @@ export const postUserAction = user => async dispatch => {
     console.log(user)
     // call axiohelper to call api
 
-    const data = await postUser(user)
-    console.log(data)
+    const promiseData = postUser(user)
+
+    toast.promise(promiseData, {
+        pending: "Please wait ...."
+    })
+    const data = await promiseData
 
     toast[data.status](data.message)
     dispatch(responseResolved(data))
