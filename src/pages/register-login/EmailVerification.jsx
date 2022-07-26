@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
+import { postEmailVerification } from "../../helpers/axiosHelpers";
 
 const EmailVerification = () => {
   const [queryParams] = useSearchParams();
   const [isPending, setIsPending] = useState(true);
 
   useEffect(() => {
-    const obj = {};
-    const emailValidationCode = queryParams.get("c");
-    const email = queryParams.get("e");
+    const obj = {
+      emailValidationCode: queryParams.get("c"),
+      email: queryParams.get("e"),
+    };
+
+    const doFetch = async () => {
+      const response = await postEmailVerification(obj);
+      console.log(response);
+    };
+    doFetch();
   }, []);
 
-  console.log(queryParams.get("c"));
-  console.log(queryParams.get("e"));
   return (
     <div className="container d-flex justify-content-center">
       <div className="verify-email mt-5 w-75 bg-info p-2 rounded ">
