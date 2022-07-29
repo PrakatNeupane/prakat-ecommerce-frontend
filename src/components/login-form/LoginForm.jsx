@@ -1,20 +1,16 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { Alert, Button, Container, Form, Spinner } from "react-bootstrap";
 import "./loginForm.css";
 import { useDispatch, useSelector } from "react-redux";
+import { postLoginAction } from "../../pages/register-login/signInUpAction";
 
-const initialState = {
-  email: "prabal@gmail.com",
-  password: "123",
-};
 // useRef=> using data within the component without causing it to rerender
 // with handleOnChange, we store the value in a state and state updates everytime the component rerenders. thats what is avoided with useRef
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const [error, setError] = useState(false);
 
   // pull data from the redux store
-  const { isLoading, response } = useSelector((state) => state.signInUp);
+  const { isLoading } = useSelector((state) => state.signInUp);
 
   const emailRef = useRef();
   const passRef = useRef();
@@ -26,6 +22,7 @@ const LoginForm = () => {
     if (!email || !pass) {
       return alert("Both input fields must be filled");
     }
+    dispatch(postLoginAction({ email, pass }));
   };
 
   return (
@@ -40,6 +37,7 @@ const LoginForm = () => {
               ref={emailRef}
               name="email"
               type="email"
+              value="a@a.com"
               placeholder="Enter email"
               required
             />
@@ -50,13 +48,14 @@ const LoginForm = () => {
             <Form.Control
               ref={passRef} // trying to grab value as uncontrolled input field => create a reference point to this input field such as getElementById
               name="password"
+              value="1234"
               type="password"
               placeholder="Password"
               required
             />
           </Form.Group>
 
-          <Form.Group>
+          {/* <Form.Group>
             {response.message && (
               <Alert
                 variant={response.status === "success" ? "success" : "danger"}
@@ -64,17 +63,17 @@ const LoginForm = () => {
                 {response.message}
               </Alert>
             )}
-          </Form.Group>
+          </Form.Group> */}
 
-          <Form.Group className="mb-3" controlId="formGroupPassword">
-            <Button type="submit">
-              {isLoading ? (
-                <Spinner variant="primary" animation="border" size="sm" />
-              ) : (
-                "Log In"
-              )}
-            </Button>
-          </Form.Group>
+          {/* <Form.Group className="mb-3" controlId="formGroupPassword"> */}
+          <Button type="submit">
+            {isLoading ? (
+              <Spinner variant="primary" animation="border" size="sm" />
+            ) : (
+              "Log In"
+            )}
+          </Button>
+          {/* </Form.Group> */}
         </Form>
       </div>
     </Container>
