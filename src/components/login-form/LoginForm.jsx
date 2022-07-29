@@ -37,7 +37,6 @@ const LoginForm = () => {
               ref={emailRef}
               name="email"
               type="email"
-              value="a@a.com"
               placeholder="Enter email"
               required
             />
@@ -48,7 +47,6 @@ const LoginForm = () => {
             <Form.Control
               ref={passRef} // trying to grab value as uncontrolled input field => create a reference point to this input field such as getElementById
               name="password"
-              value="1234"
               type="password"
               placeholder="Password"
               required

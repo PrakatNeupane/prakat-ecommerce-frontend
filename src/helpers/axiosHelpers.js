@@ -35,10 +35,10 @@ export const loginUser = async (usrObj) => {
         const { data } = await axios.post(adminEP + "/login", usrObj);
         return data;
     } catch (error) {
-        console.log(error);
+        console.log(error.response.data.message, error.message);
         return {
             status: "error",
-            message: error.message,
+            message: error?.response?.data?.message || error.message,
         };
     }
 };
