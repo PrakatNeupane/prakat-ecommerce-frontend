@@ -22,11 +22,13 @@ export const postLoginAction = user => async dispatch => {
     dispatch(isPending())
     // call axiohelper to call api
     const promiseData = loginUser(user)
+    console.log(promiseData)
 
     toast.promise(promiseData, {
         pending: "Please wait ...."
     })
     const data = await promiseData
+    console.log(data)
 
     toast[data.status](data.message)
     dispatch(responseResolved(data))

@@ -18,11 +18,11 @@ const LoginForm = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     const email = emailRef.current.value;
-    const pass = passRef.current.value;
-    if (!email || !pass) {
+    const password = passRef.current.value;
+    if (!email || !password) {
       return alert("Both input fields must be filled");
     }
-    dispatch(postLoginAction({ email, pass }));
+    dispatch(postLoginAction({ email, password }));
   };
 
   return (
@@ -55,25 +55,15 @@ const LoginForm = () => {
             />
           </Form.Group>
 
-          {/* <Form.Group>
-            {response.message && (
-              <Alert
-                variant={response.status === "success" ? "success" : "danger"}
-              >
-                {response.message}
-              </Alert>
-            )}
-          </Form.Group> */}
-
-          {/* <Form.Group className="mb-3" controlId="formGroupPassword"> */}
-          <Button type="submit">
-            {isLoading ? (
-              <Spinner variant="primary" animation="border" size="sm" />
-            ) : (
-              "Log In"
-            )}
-          </Button>
-          {/* </Form.Group> */}
+          <Form.Group className="mb-3" controlId="formGroupPassword">
+            <Button type="submit">
+              {isLoading ? (
+                <Spinner variant="danger" animation="border" size="sm" />
+              ) : (
+                "Log In"
+              )}
+            </Button>
+          </Form.Group>
         </Form>
       </div>
     </Container>
