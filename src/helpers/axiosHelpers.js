@@ -1,5 +1,4 @@
 import axios from "axios";
-import { applyMiddleware } from "redux";
 
 const rootUrlAPI = "http://localhost:8000/api/v1";
 const adminEP = rootUrlAPI + "/admin";
