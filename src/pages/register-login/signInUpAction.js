@@ -1,6 +1,7 @@
 import { postUser, loginUser } from '../../helpers/axiosHelpers'
 import { isPending, responseResolved } from './signInUpSlice'
 import { toast } from "react-toastify";
+import { setUser } from '../admin-profile/adminProfileSlice';
 
 export const postUserAction = user => async dispatch => {
     dispatch(isPending())
@@ -28,6 +29,12 @@ export const postLoginAction = user => async dispatch => {
         pending: "Please wait ...."
     })
     const data = await promiseData
+
+    if (data.status === "success") {
+        console.log(data.user)
+        dispatch(setUser(data.user))
+    }
+
     console.log(data)
 
     toast[data.status](data.message)
