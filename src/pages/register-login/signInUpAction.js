@@ -37,6 +37,6 @@ export const postLoginAction = user => async dispatch => {
 
     console.log(data)
 
-    toast[data.status](data.message)
+    data.status === "error" && toast[data.status](data.message)
     dispatch(responseResolved(data))
 }
