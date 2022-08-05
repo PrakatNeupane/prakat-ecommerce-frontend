@@ -13,6 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 import EmailVerification from './pages/register-login/EmailVerification';
 import Dashboard from './pages/dashboard/Dashboard';
 import AdminProfile from './pages/admin-profile/AdminProfile';
+import Categories from './pages/categories/Categories';
 
 
 
@@ -24,6 +25,8 @@ function App() {
           {/* Private router */}
           <Route path="/dashboard" element={<Dashboard />}></Route>
           <Route path="/admin-profile" element={<AdminProfile />}></Route>
+          <Route path='/categories' element={<Categories />}></Route>
+
           <Route path='/register' element={<RegistrationPage />}></Route>
           <Route path='/' element={<LoginPage />}></Route>
           <Route path='/admin/verify-email' element={<EmailVerification />}></Route>
