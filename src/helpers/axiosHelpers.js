@@ -3,6 +3,25 @@ import axios from "axios";
 const rootUrlAPI = "http://localhost:8000/api/v1";
 const adminEP = rootUrlAPI + "/admin";
 
+const apiProcessor = async ({ method, url, data }) => { // data must be object
+    try {
+        const response = await axios({
+            method,
+            url,
+            data,
+        });
+    } catch (error) {
+        let message = error.message;
+        if (error.response && error.response.data) {
+            message = error.response.data.message
+        }
+        return {
+            status: "error",
+            message,
+        }
+    }
+}
+
 export const postUser = async (usrObj) => {
     try {
         const { data } = await axios.post(adminEP, usrObj);
