@@ -1,7 +1,11 @@
+import { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 
 export const CategoryTable = () => {
+  useEffect(() => {
+    // call api to fetch al the categories and set in the store
+  });
   return (
     <Table striped>
       <thead>
