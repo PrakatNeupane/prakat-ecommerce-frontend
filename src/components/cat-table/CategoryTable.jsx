@@ -1,43 +1,43 @@
 import { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategoriesAction } from "../../pages/categories/categoryAction";
 
 export const CategoryTable = () => {
+  const dispatch = useDispatch();
+
+  const { categories } = useSelector((state) => state.category);
+  console.log(categories);
   useEffect(() => {
     // call api to fetch al the categories and set in the store
-  });
+    dispatch(fetchCategoriesAction());
+  }, []);
   return (
     <Table striped>
       <thead>
         <tr>
           <th>#</th>
-          <th>Category Name</th>
-          <th>Parent</th>
+          <th>Status</th>
+          <th>Name</th>
+          <th>Parent ID</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>
-            <Button variant="warning">Edit</Button>
-            {"  "}
-            <Button variant="danger">Delete</Button>
-          </td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td colSpan={2}>Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
+        {categories.map((item, i) => (
+          <tr>
+            <td>{i + 1}</td>
+            <td>{item.status}</td>
+            <td>{item.catName}</td>
+            <td>{item.parentCatId}</td>
+            <td>
+              <Button variant="warning">Edit</Button>
+              {"  "}
+              <Button variant="danger">Delete</Button>
+            </td>
+          </tr>
+        ))}
       </tbody>
     </Table>
   );
