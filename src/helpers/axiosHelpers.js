@@ -46,3 +46,8 @@ export const getCategories = () => {
     const url = catEP
     return apiProcessor({ method: "get", url })
 }
+
+export const postCategories = (dataObj) => {
+    const url = catEP
+    return apiProcessor({ method: "post", url, dataObj })
+}
