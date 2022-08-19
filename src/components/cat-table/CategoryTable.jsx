@@ -28,7 +28,13 @@ export const CategoryTable = () => {
         {categories.map((item, i) => (
           <tr>
             <td>{i + 1}</td>
-            <td>{item.status}</td>
+            <td
+              className={
+                item.status === "active" ? "text-success" : "text-danger"
+              }
+            >
+              {item.status}
+            </td>
             <td>{item.catName}</td>
             <td>{item.parentCatId}</td>
             <td>
