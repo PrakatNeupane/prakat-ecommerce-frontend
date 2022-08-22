@@ -55,6 +55,8 @@ export const CategoryForm = () => {
               name="parentCatId"
               onChange={handleOnChange}
             >
+              <option value> ...Select parent Category...</option>
+
               {categories.map(
                 (item) =>
                   !item.parentCatId && (
