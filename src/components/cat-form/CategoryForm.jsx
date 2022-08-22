@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postCategoriesAction } from "../../pages/categories/categoryAction";
 
 const initialState = {
@@ -15,6 +15,7 @@ const initialState = {
 export const CategoryForm = () => {
   const dispatch = useDispatch();
   const [form, setForm] = useState(initialState);
+  const { categories } = useSelector((state) => state.category);
 
   const handleOnChange = (e) => {
     let { checked, name, value } = e.target;
@@ -54,7 +55,14 @@ export const CategoryForm = () => {
               name="parentCatId"
               onChange={handleOnChange}
             >
-              <option value="">... Select Parent Category ...</option>
+              {categories.map(
+                (item) =>
+                  !item.parentCatId && (
+                    <option value={item._id} key={item._id}>
+                      {item.catName}
+                    </option>
+                  )
+              )}
             </Form.Select>
           </Form.Group>
         </Col>
