@@ -51,3 +51,7 @@ export const postCategories = (dataObj) => {
     const url = catEP
     return apiProcessor({ method: "post", url, dataObj })
 }
+export const deleteCategory = (_id) => {
+    const url = catEP
+    return apiProcessor({ method: "delete", url, dataObj: _id })
+}

@@ -23,7 +23,7 @@ export const CategoryForm = () => {
     if (name === "status") {
       value = checked ? "active" : "inactive";
     }
-    console.log(checked, name, value);
+
     setForm({
       ...form,
       [name]: value,
@@ -34,7 +34,7 @@ export const CategoryForm = () => {
     e.preventDefault();
     console.log(form);
     const parentCatId = form.parentCatId ? form.parentCatId : undefined;
-    dispatch(postCategoriesAction(form));
+    dispatch(postCategoriesAction({ ...form, parentCatId }));
   };
   return (
     <Form className="py-5" onSubmit={handleOnSubmit}>
