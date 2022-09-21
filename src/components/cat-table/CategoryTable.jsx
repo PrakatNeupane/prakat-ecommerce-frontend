@@ -18,7 +18,7 @@ export const CategoryTable = () => {
 
   const handleOnDelete = (_id) => {
     if (window.confirm("Are you sure you want to delete this category?")) {
-      dispatch(deleteCategoriesAction);
+      dispatch(deleteCategoriesAction(_id));
     }
   };
 
