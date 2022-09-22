@@ -6,6 +6,7 @@ import {
   deleteCategoriesAction,
   fetchCategoriesAction,
 } from "../../pages/categories/categoryAction";
+import { MyVerticallyCenteredModal } from "../modal/Modal";
 
 export const CategoryTable = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ export const CategoryTable = () => {
 
   return (
     <div>
-      {" "}
+      <MyVerticallyCenteredModal show={false} />{" "}
       <h4> {categories.length} Categories found !</h4>
       <Table striped>
         <thead>
@@ -53,8 +54,9 @@ export const CategoryTable = () => {
                 <Button variant="warning">Edit</Button>
                 {"  "}
                 <Button
-                  variant="danger"
+                  title="You can only delete if child category does not exist"
                   onClick={() => handleOnDelete(item._id)}
+                  variant="danger"
                 >
                   Delete
                 </Button>
