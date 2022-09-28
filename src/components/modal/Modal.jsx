@@ -1,13 +1,16 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleModal } from "../../system-state/systemSlice";
 
 export const MyVerticallyCenteredModal = (props) => {
   const { showModal } = useSelector((state) => state.system);
+  const dispatch = useDispatch();
   return (
     <Modal
-      {...props}
+      backdrop="static"
+      onHide={() => dispatch(toggleModal(false))}
       show={showModal}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
