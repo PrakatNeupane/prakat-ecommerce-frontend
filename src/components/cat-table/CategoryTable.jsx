@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +12,7 @@ import { MyVerticallyCenteredModal } from "../modal/Modal";
 
 export const CategoryTable = () => {
   const dispatch = useDispatch();
+  const [selectedCategory, setSelectedCategory] = useState({});
 
   const { categories } = useSelector((state) => state.category);
   useEffect(() => {
@@ -25,9 +26,14 @@ export const CategoryTable = () => {
     }
   };
 
+  const handleOnEdit = (cat) => {
+    setSelectedCategory(cat);
+    dispatch(toggleModal());
+  };
+
   return (
     <div>
-      <EditCategory show={false} />{" "}
+      <EditCategory selectedCategory={selectedCategory} />{" "}
       <h4> {categories.length} Categories found !</h4>
       <Table striped>
         <thead>
@@ -56,7 +62,7 @@ export const CategoryTable = () => {
                 <Button
                   variant="warning"
                   onClick={() => {
-                    dispatch(toggleModal(true));
+                    handleOnEdit(item);
                   }}
                 >
                   Edit

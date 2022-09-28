@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -13,11 +14,15 @@ const initialState = {
   catName: "",
 };
 
-export const EditCategory = () => {
+export const EditCategory = ({ selectedCategory }) => {
+  console.log(selectedCategory);
   const dispatch = useDispatch();
-  const [form, setForm] = useState(initialState);
+  const [form, setForm] = useState(selectedCategory);
   const { categories } = useSelector((state) => state.category);
 
+  useEffect(() => {
+    setForm(selectedCategory);
+  }, [selectedCategory]);
   const handleOnChange = (e) => {
     let { checked, name, value } = e.target;
 
@@ -38,6 +43,8 @@ export const EditCategory = () => {
     // dispatch action to update the category
     // dispatch(postCategoriesAction({ ...form, parentCatId }));
   };
+
+  console.log(form);
   return (
     <MyVerticallyCenteredModal title="Edit Category">
       {" "}
