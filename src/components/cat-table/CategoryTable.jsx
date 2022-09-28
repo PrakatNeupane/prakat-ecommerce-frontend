@@ -6,6 +6,7 @@ import {
   deleteCategoriesAction,
   fetchCategoriesAction,
 } from "../../pages/categories/categoryAction";
+import { toggleModal } from "../../system-state/systemSlice";
 import { EditCategory } from "../cat-form/EditCategory";
 import { MyVerticallyCenteredModal } from "../modal/Modal";
 
@@ -52,7 +53,14 @@ export const CategoryTable = () => {
               <td>{item.catName}</td>
               <td>{item.parentCatId}</td>
               <td>
-                <Button variant="warning">Edit</Button>
+                <Button
+                  variant="warning"
+                  onClick={() => {
+                    dispatch(toggleModal(true));
+                  }}
+                >
+                  Edit
+                </Button>
                 {"  "}
                 <Button
                   title="You can only delete if child category does not exist"

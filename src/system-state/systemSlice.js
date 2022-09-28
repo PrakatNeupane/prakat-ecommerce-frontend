@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     showAdminSidebar: false,
-    showModal: true,
+    showModal: false,
 }
 
 const systemSlice = createSlice({
