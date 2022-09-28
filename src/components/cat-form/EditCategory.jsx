@@ -57,6 +57,7 @@ export const EditCategory = ({ selectedCategory }) => {
               id="custom-switch"
               label="Status"
               name="status"
+              checked={form.status === "active"}
             />
           </Col>
           <Col md="3">
@@ -71,7 +72,11 @@ export const EditCategory = ({ selectedCategory }) => {
                 {categories.map(
                   (item) =>
                     !item.parentCatId && (
-                      <option value={item._id} key={item._id}>
+                      <option
+                        value={item._id}
+                        key={item._id}
+                        selected={item._id === form.parentCatId}
+                      >
                         {item.catName}
                       </option>
                     )
@@ -84,6 +89,7 @@ export const EditCategory = ({ selectedCategory }) => {
               name="catName"
               placeholder="Category Name"
               onChange={handleOnChange}
+              value={form.catName}
               required
             />
           </Col>
