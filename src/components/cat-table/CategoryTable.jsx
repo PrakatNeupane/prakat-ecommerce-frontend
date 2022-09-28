@@ -6,6 +6,7 @@ import {
   deleteCategoriesAction,
   fetchCategoriesAction,
 } from "../../pages/categories/categoryAction";
+import { EditCategory } from "../cat-form/EditCategory";
 import { MyVerticallyCenteredModal } from "../modal/Modal";
 
 export const CategoryTable = () => {
@@ -25,7 +26,7 @@ export const CategoryTable = () => {
 
   return (
     <div>
-      <MyVerticallyCenteredModal show={false} />{" "}
+      <EditCategory show={false} />{" "}
       <h4> {categories.length} Categories found !</h4>
       <Table striped>
         <thead>

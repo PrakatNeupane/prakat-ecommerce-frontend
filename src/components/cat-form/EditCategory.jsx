@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { useDispatch, useSelector } from "react-redux";
 import { postCategoriesAction } from "../../pages/categories/categoryAction";
+import { MyVerticallyCenteredModal } from "../modal/Modal";
 
 const initialState = {
   status: "inactive",
@@ -38,49 +39,52 @@ export const EditCategory = () => {
     // dispatch(postCategoriesAction({ ...form, parentCatId }));
   };
   return (
-    <Form className="py-5" onSubmit={handleOnSubmit}>
-      <Row className="g-3">
-        <Col md="2">
-          <Form.Check
-            onChange={handleOnChange}
-            type="switch"
-            id="custom-switch"
-            label="Status"
-            name="status"
-          />
-        </Col>
-        <Col md="3">
-          <Form.Group as={Col} controlId="formGridState">
-            <Form.Select
-              defaultValue="Choose..."
-              name="parentCatId"
+    <MyVerticallyCenteredModal title="Edit Category">
+      {" "}
+      <Form className="py-5" onSubmit={handleOnSubmit}>
+        <Row className="g-3">
+          <Col md="2">
+            <Form.Check
               onChange={handleOnChange}
-            >
-              <option value> ...Select parent Category...</option>
+              type="switch"
+              id="custom-switch"
+              label="Status"
+              name="status"
+            />
+          </Col>
+          <Col md="3">
+            <Form.Group as={Col} controlId="formGridState">
+              <Form.Select
+                defaultValue="Choose..."
+                name="parentCatId"
+                onChange={handleOnChange}
+              >
+                <option value> ...Select parent Category...</option>
 
-              {categories.map(
-                (item) =>
-                  !item.parentCatId && (
-                    <option value={item._id} key={item._id}>
-                      {item.catName}
-                    </option>
-                  )
-              )}
-            </Form.Select>
-          </Form.Group>
-        </Col>
-        <Col md="4">
-          <Form.Control
-            name="catName"
-            placeholder="Category Name"
-            onChange={handleOnChange}
-            required
-          />
-        </Col>
-        <Col md="3">
-          <Button type="submit">Update Category</Button>
-        </Col>
-      </Row>
-    </Form>
+                {categories.map(
+                  (item) =>
+                    !item.parentCatId && (
+                      <option value={item._id} key={item._id}>
+                        {item.catName}
+                      </option>
+                    )
+                )}
+              </Form.Select>
+            </Form.Group>
+          </Col>
+          <Col md="4">
+            <Form.Control
+              name="catName"
+              placeholder="Category Name"
+              onChange={handleOnChange}
+              required
+            />
+          </Col>
+          <Col md="3">
+            <Button type="submit">Update Category</Button>
+          </Col>
+        </Row>
+      </Form>
+    </MyVerticallyCenteredModal>
   );
 };
