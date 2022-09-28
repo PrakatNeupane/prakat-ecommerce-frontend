@@ -1,11 +1,14 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { useSelector } from "react-redux";
 
 export const MyVerticallyCenteredModal = (props) => {
+  const { showModal } = useSelector((state) => state.system);
   return (
     <Modal
       {...props}
+      show={showModal}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered

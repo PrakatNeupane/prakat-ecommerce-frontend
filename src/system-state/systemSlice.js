@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     showAdminSidebar: false,
+    showModal: true,
 }
 
 const systemSlice = createSlice({
@@ -10,11 +11,15 @@ const systemSlice = createSlice({
     reducers: {
         toggleSidebar: (state) => {
             state.showAdminSidebar = !state.showAdminSidebar
-        }
+        },
+        toggleModal: (state) => {
+            state.showModal = !state.showModal
+        },
+
     }
 })
 
 const { reducer, actions } = systemSlice
 
-export const { toggleSidebar } = actions
+export const { toggleSidebar, toggleModal } = actions
 export default reducer
