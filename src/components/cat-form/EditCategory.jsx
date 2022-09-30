@@ -42,6 +42,7 @@ export const EditCategory = ({ selectedCategory }) => {
     const parentCatId = form.parentCatId ? form.parentCatId : undefined;
     // dispatch action to update the category
     // dispatch(postCategoriesAction({ ...form, parentCatId }));
+    console.log(form);
   };
 
   console.log(form);
