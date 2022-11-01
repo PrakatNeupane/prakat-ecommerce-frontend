@@ -5,7 +5,10 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { useDispatch, useSelector } from "react-redux";
-import { postCategoriesAction } from "../../pages/categories/categoryAction";
+import {
+  postCategoriesAction,
+  updateCategoriesAction,
+} from "../../pages/categories/categoryAction";
 import { MyVerticallyCenteredModal } from "../modal/Modal";
 
 const initialState = {
@@ -39,9 +42,10 @@ export const EditCategory = ({ selectedCategory }) => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     console.log(form);
-    const parentCatId = form.parentCatId ? form.parentCatId : undefined;
+
+    const { parentCatId, catName, status, _id } = form;
     // dispatch action to update the category
-    // dispatch(postCategoriesAction({ ...form, parentCatId }));
+    dispatch(updateCategoriesAction({ _id, parentCatId, catName, status }));
     console.log(form);
   };
 
