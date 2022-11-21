@@ -12,7 +12,7 @@ const Header = () => {
   const dispatch = useDispatch();
   return (
     <>
-      <Navbar bg="danger" variant="dark" expand="md">
+      <Navbar bg="primary" variant="dark" expand="md">
         <Container>
           <Button variant="primary" onClick={() => dispatch(toggleSidebar())}>
             <i class="fa-solid fa-bars"></i>
