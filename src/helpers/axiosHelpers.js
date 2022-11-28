@@ -67,3 +67,8 @@ export const getProducts = () => {
     const url = productEP
     return apiProcessor({ method: "get", url })
 }
+
+export const postProduct = (dataObj) => {
+    const url = productEP
+    return apiProcessor({ method: "post", url, dataObj })
+}

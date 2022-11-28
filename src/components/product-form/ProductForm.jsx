@@ -3,17 +3,18 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategoriesAction } from "../../pages/categories/categoryAction";
+import { postProductAction } from "../../pages/product/productAction";
 import CustomInput from "../custom-input/CustomInput";
 
 const initialState = {
-  CatId: null,
-  description: "",
-  name: "",
-  sku: "",
-  description: "",
-  qty: 0,
-  price: 0,
-  salesPrice: 0,
+  catId: null,
+  description: "example",
+  name: "example",
+  sku: "example",
+  description: "example",
+  qty: 10,
+  price: 10,
+  salesPrice: 10,
   salesStartDate: null,
   salesEndDate: null,
   status: "inactive",
@@ -30,9 +31,12 @@ const ProductForm = () => {
   }, []);
 
   const handleOnChange = (e) => {
-    const { checked, name, value } = e.target;
+    let { checked, name, value } = e.target;
 
-    if (name === "status") value = checked ? "active" : "inactive";
+    if (name === "status") {
+      value = checked ? "active" : "inactive";
+    }
+
     setForm({
       ...form,
       [name]: value,
@@ -42,6 +46,7 @@ const ProductForm = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     console.log(form);
+    dispatch(postProductAction(form));
   };
   const inputFields = [
     {
@@ -112,7 +117,7 @@ const ProductForm = () => {
       <Form.Group controlId="formGridState" className="mb-3">
         <Form.Select
           defaultValue="Choose..."
-          name="parentCatId"
+          name="catId"
           onChange={handleOnChange}
           required
         >
