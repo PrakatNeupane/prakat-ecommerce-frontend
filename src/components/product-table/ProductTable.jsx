@@ -17,7 +17,7 @@ export const ProductTable = () => {
   // const availableProducts = products.filter((item) => item.catId);
 
   return (
-    <div>
+    <div style={{ overflowX: "scroll" }}>
       <h4> {products.length} Products found !</h4>
       <Table striped>
         <thead>
@@ -50,7 +50,13 @@ export const ProductTable = () => {
                 <td>{item.sku}</td>
                 <td>${item.price.toLocaleString()}</td>
                 <td>{item.salesPrice || "-"}</td>
-                <td>{item.salesDate || "-"}</td>
+                <td>
+                  {item.salesStartDate
+                    ? new Date(item.salesStartDate).toLocaleDateString() +
+                      "-" +
+                      new Date(item.salesEndDate).toLocaleDateString()
+                    : "-"}
+                </td>
                 <td>
                   <Button variant="warning">Edit</Button>{" "}
                   <Button variant="danger">Delete</Button>

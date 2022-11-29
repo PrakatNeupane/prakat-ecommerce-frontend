@@ -14,9 +14,8 @@ export const postProductAction = (obj) => async (dispatch) => {
         pending: "Please wait ....",
     });
 
-    const { status, message } = await response;
+    const result = await response;
 
-    toast[status](message);
-
-    status === "success" && dispatch(fetchProductsAction());
+    toast[result.status](result.message);
+    result.status === "success" && dispatch(fetchProductsAction());
 };
