@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProductsAction } from "../../pages/product/productAction";
+import {
+  deleteProductAction,
+  fetchProductsAction,
+} from "../../pages/product/productAction";
 
 export const ProductTable = () => {
   const dispatch = useDispatch();
@@ -14,7 +17,11 @@ export const ProductTable = () => {
     dispatch(fetchProductsAction());
   }, []);
 
-  // const availableProducts = products.filter((item) => item.catId);
+  const handleOnDelete = (_id) => {
+    if (window.confirm("Are you sure you want to delete this product?")) {
+      dispatch(deleteProductAction(_id));
+    }
+  };
 
   return (
     <div style={{ overflowX: "scroll" }}>
@@ -59,7 +66,12 @@ export const ProductTable = () => {
                 </td>
                 <td>
                   <Button variant="warning">Edit</Button>{" "}
-                  <Button variant="danger">Delete</Button>
+                  <Button
+                    variant="danger"
+                    onClick={() => handleOnDelete(item._id)}
+                  >
+                    Delete
+                  </Button>
                 </td>
               </tr>
             </>
