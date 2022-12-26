@@ -73,7 +73,7 @@ export const postProduct = (dataObj) => {
     return apiProcessor({ method: "post", url, dataObj })
 }
 
-export const deleteProduct = (_id) => {
+export const deleteProducts = (dataObj) => {
     const url = productEP
-    return apiProcessor({ method: "delete", url, dataObj: { _id } })
+    return apiProcessor({ method: "delete", url, dataObj })
 }

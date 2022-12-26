@@ -14,7 +14,6 @@ export const ProductTable = () => {
   const [ids, setIds] = useState([]);
 
   const { products } = useSelector((state) => state.product);
-  console.log(products);
   useEffect(() => {
     // call api to fetch al the categories and set in the store
     dispatch(fetchProductsAction());
@@ -34,6 +33,7 @@ export const ProductTable = () => {
   const handleOnSelect = (e) => {
     const { checked, value } = e.target;
     console.log(checked, value);
+    // maincheckbox clicked
     if (value === "all") {
       if (checked) {
         const allIds = products.map((item) => item._id);
@@ -41,11 +41,17 @@ export const ProductTable = () => {
       } else {
         setIds([]);
       }
+      return;
     }
+
+    // individual click
+    checked
+      ? setIds([...ids, value])
+      : setIds(ids.filter((id) => id !== value));
   };
 
   return (
-    <div style={{ overflowX: "scroll" }}>
+    <div style={{ overflowX: "scroll" }} className="mb-5">
       <h4> {products.length} Products found !</h4>
       <Table striped>
         <thead>
@@ -101,17 +107,22 @@ export const ProductTable = () => {
                 <Button variant="warning" onClick={() => handleOnEdit()}>
                   Edit
                 </Button>{" "}
-                <Button
-                  variant="danger"
-                  onClick={() => handleOnDelete(item._id)}
-                >
-                  Delete
-                </Button>
               </td>
             </tr>
           ))}
         </tbody>
       </Table>
+
+      <div>
+        {ids.length > 0 && (
+          <Button
+            variant="danger"
+            onClick={() => dispatch(deleteProductAction(ids)) && setIds([])}
+          >
+            Delete
+          </Button>
+        )}
+      </div>
     </div>
   );
 };

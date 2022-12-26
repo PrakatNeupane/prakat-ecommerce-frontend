@@ -1,4 +1,4 @@
-import { deleteProduct, getProducts, postProduct } from "../../helpers/axiosHelpers"
+import { deleteProducts, getProducts, postProduct } from "../../helpers/axiosHelpers"
 import { setProducts } from "./productSlice"
 import { toast } from "react-toastify";
 
@@ -13,15 +13,13 @@ export const postProductAction = (obj) => async (dispatch) => {
     toast.promise(response, {
         pending: "Please wait ....",
     });
-
     const result = await response;
-
     toast[result.status](result.message);
     result.status === "success" && dispatch(fetchProductsAction());
 };
 
-export const deleteProductAction = _id => async (dispatch) => {
-    const responsePromise = deleteProduct(_id)
+export const deleteProductAction = ids => async (dispatch) => {
+    const responsePromise = deleteProducts(ids)
     toast.promise(responsePromise, {
         pending: "Please wait"
     })
