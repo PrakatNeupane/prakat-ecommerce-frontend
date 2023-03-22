@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {
   deleteProductAction,
@@ -25,10 +26,10 @@ export const ProductTable = () => {
     }
   };
 
-  const handleOnEdit = () => {
-    // go to new page
-    navigate("/product/edit");
-  };
+  // const handleOnEdit = () => {
+  //   // go to new page
+  //   navigate("/product/edit");
+  // };
 
   const handleOnSelect = (e) => {
     const { checked, value } = e.target;
@@ -104,9 +105,9 @@ export const ProductTable = () => {
                   : "-"}
               </td>
               <td>
-                <Button variant="warning" onClick={() => handleOnEdit()}>
-                  Edit
-                </Button>{" "}
+                <Link to={`/product/edit/${item._id}`}>
+                  <Button variant="warning">Edit</Button>{" "}
+                </Link>
               </td>
             </tr>
           ))}

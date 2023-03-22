@@ -20,7 +20,7 @@ const initialState = {
   status: "inactive",
 };
 
-const ProductForm = () => {
+const EditProductForm = () => {
   const { categories } = useSelector((state) => state.category);
   const dispatch = useDispatch();
   const [form, setForm] = useState(initialState);
@@ -143,4 +143,4 @@ const ProductForm = () => {
   );
 };
 
-export default ProductForm;
+export default EditProductForm;
